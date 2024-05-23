@@ -6,6 +6,22 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    position: relative; /* Add this line */
+    padding-top: 70px;
+}
+
+.banner {
+    background-color: #f8f9fa;
+    color: #212529;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    position: fixed; /* Add this line */
+    top: 0; /* Add this line */
+    width: 100%; /* Add this line */
+    z-index: 1000; /* Add this line to make sure the banner is on top of other elements */
 }
 
 .gallery img {
@@ -61,7 +77,7 @@ body {
 /* The Close Button */
 .close {
     position: absolute;
-    top: 15px;
+    top: 75px;
     right: 35px;
     color: #f1f1f1;
     font-size: 40px;
@@ -81,6 +97,10 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    position: fixed; /* Add this line */
+    z-index: 1000; /* Add this line to make sure the navigation is on top of other elements */
+    top: 70px; /* Add this line */
+    width: 100%; /* Add this line */
 }
 
 .nav-button {

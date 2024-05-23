@@ -8,7 +8,9 @@ window.onload = function() {
     var prevPage = document.getElementById('prevPage');
     var nextPage = document.getElementById('nextPage');
     var homePage = document.getElementById('homePage');
+    var navigation = document.getElementById('navigation');
     var currentImageIndex = 0;
+    var imagesOnPage = [];
 
     var currentPage = 1;
     var imagesPerPage = 20; // 5x4 grid
@@ -18,6 +20,7 @@ window.onload = function() {
 
     function loadImages() {
         gallery.innerHTML = ''; // Clear the gallery
+        imagesOnPage = []; // Clear the images on page
 
         var start = (currentPage - 1) * imagesPerPage;
         var end = start + imagesPerPage;
@@ -29,9 +32,11 @@ window.onload = function() {
             img.onclick = function() {
                 modal.style.display = 'block';
                 modalImg.src = this.src
-                currentImageIndex = i; // Set the current image index
+                currentImageIndex = imagesOnPage.indexOf(this); // Set the current image index
+                navigation.style.display = 'none'; // Hide the navigation buttons
             };
             gallery.appendChild(img);
+            imagesOnPage.push(img); // Add the image to images on page
         }
     }
 
@@ -43,6 +48,7 @@ window.onload = function() {
     // When the user clicks on <span> (x), close the modal
     span.onclick = function() { 
         modal.style.display = 'none';
+        navigation.style.display = 'flex'; // Show the navigation buttons
     };
 
     // When the user clicks on the Previous button, go to the previous page
@@ -65,19 +71,20 @@ window.onload = function() {
         currentPage = 1;
         loadImages();
     };
+
     // When the user clicks on the Previous Image button, show the previous image
     prevImage.onclick = function() {
         if (currentImageIndex > 0) {
             currentImageIndex--;
-            modalImg.src = 'CatsDogs/CatsDogs_000' + ('0' + (currentImageIndex+1)).slice(-2) + '.jpg';
+            modalImg.src = imagesOnPage[currentImageIndex].src;
         }
     };
 
     // When the user clicks on the Next Image button, show the next image
     nextImage.onclick = function() {
-        if (currentImageIndex < 63 - 1) { // Change 63 to the total number of images
+        if (currentImageIndex < imagesOnPage.length - 1) {
             currentImageIndex++;
-            modalImg.src = 'CatsDogs/CatsDogs_000' + ('0' + (currentImageIndex+1)).slice(-2) + '.jpg';
+            modalImg.src = imagesOnPage[currentImageIndex].src;
         }
     };
 };
