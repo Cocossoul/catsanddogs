@@ -25,7 +25,7 @@ window.onload = function() {
         var start = (currentPage - 1) * imagesPerPage;
         var end = start + imagesPerPage;
 
-        for (var i = start; i < end; i++) {
+        for (var i = start; i < end && i < 63; i++) {
             var img = document.createElement('img');
             img.src = 'CatsDogs/CatsDogs_000' + ('0' + (i+1)).slice(-2) + '.jpg';
             img.alt = 'Image ' + (i+1);
@@ -61,7 +61,7 @@ window.onload = function() {
 
     // When the user clicks on the Next button, go to the next page
     nextPage.onclick = function() {
-        if ((currentPage - 1) * imagesPerPage < 64)
+        if (currentPage * imagesPerPage < 64)
         currentPage++;
         loadImages();
     };
